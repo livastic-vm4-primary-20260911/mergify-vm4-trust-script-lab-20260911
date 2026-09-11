@@ -1,0 +1,8 @@
+merge_queue:
+  max_parallel_checks: 1
+queue_rules:
+  - name: script-only-security-probe
+    queue_conditions: true
+    merge_conditions:
+      - check-success = vm4-never-merge-security-guard
+    checks_timeout: null
