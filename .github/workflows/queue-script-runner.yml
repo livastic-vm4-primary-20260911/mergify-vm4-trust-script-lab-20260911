@@ -1,0 +1,17 @@
+name: Trusted Queue Script Runner
+on:
+  push:
+    branches:
+      - "mergify/merge-queue/**"
+permissions:
+  contents: read
+  issues: write
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run trusted repository queue script
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash ci/queue-probe.sh
